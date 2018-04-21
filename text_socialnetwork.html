@@ -1,0 +1,116 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css "href="css/web.css"/>
+</head>
+
+<script>
+$(document).ready(function()
+{   
+	// handle button clicks         
+  $('#buttonID').click(function() 
+	{
+		// make an ajax call
+		alert($('#formID').serialize());
+    $.ajax(
+		{
+            dataType: 'jsonp',
+            jsonpCallback: '_wrapper',
+            data: $('#formID').serialize(),
+            type: 'POST',
+            url: "http://port-9001.db-lokloksky2014350297.codeanyapp.com/Signup",
+            success: handleButtonResponse,
+        });
+    });
+
+    function handleButtonResponse(data)
+    {
+      alert(data);
+      // parse the json string
+      var jsonObject = JSON.parse(data);
+      $('#reponseID').append( jsonObject.message );
+    }
+	
+	$("#btnAddFav").click(function()
+	{
+		//alert("callnow");
+		var pageKeyword = "personal";
+		//tempSearch = document.forms["search"]["searchkey"].value;
+		//alert(tempEmail);
+		//alert(tempName);
+		//alert(tempPassword);
+		$.ajax(
+		{
+			url: "http://db-lokloksky2014350297.codeanyapp.com:9001/addfavourlist", 
+			type: 'POST',
+			data: $('#formID').serialize(),
+			success: function(result)
+			{
+				alert("successfully added");
+				//alert(result);
+			},error: function (xhr, textStatus, errorThrown) 
+			{
+				//alert(textStatus);
+				alert("add failed");
+				console.log(textStatus);
+      	}
+		});
+	});
+	
+  $("#btnRemoveFav").click(function()
+	{
+		//alert("callnow");
+		var pageKeyword = "protect";
+		//tempSearch = document.forms["search"]["searchkey"].value;
+		//alert(tempEmail);
+		//alert(tempName);
+		//alert(tempPassword);
+		$.ajax(
+		{
+			url: "http://db-lokloksky2014350297.codeanyapp.com:9001/removefavourlist", 
+			type: 'POST',
+			data: $('#formID').serialize(),
+			success: function(result)
+			{
+				alert("successfully removed");
+				//alert(result);
+			},error: function (xhr, textStatus, errorThrown) 
+			{
+				//alert(textStatus);
+				alert("remove failed");
+				console.log(textStatus);
+      	}
+		});
+	});
+});
+	
+	
+</script>
+<body>
+  <div class = "mask">
+  <a href="index"><div class = "style1">Personal Data Privacy</div></a>
+  <h3>Something you should remember when using social network</h3>
+  <br>
+  <ul>
+    <li>There is no real "delete" button once you post anything on the internet</li>
+    <li>In the future, You may not have the ability to control the posts today</li>
+    <li>Pictures and photos may also contain many personal data or information</li>
+    <li>Other people may collect your information without your permission and without you knowing</li>
+    <li>There is the possibility that being traced in the physical world through the information you posted on the internet</li>
+    <li>Other people may copy and posting your comment to other places without you knowing</li>
+    <li>Do not fully trust the auto delete function in the website</li>
+  </ul>
+  <br>
+  <form id="formID" name="fav">
+			<input type="hidden" name="keyword" value="social"/>
+		</form>
+  	<button id="btnAddFav" class="button button1">
+    	Add favourite
+  	</button>
+  <button id="btnRemoveFav" class="button button1">
+    Remove favourite
+  </button>
+  </div>
+</body>
+
+</html>

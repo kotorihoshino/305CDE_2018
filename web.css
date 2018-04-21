@@ -1,0 +1,102 @@
+/*!
+ * Start Bootstrap - The Big Picture (https://startbootstrap.com/template-overviews/the-big-picture)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-the-big-picture/blob/master/LICENSE)
+ */
+
+body {
+  background: url('https://i.pinimg.com/originals/22/f0/2c/22f02c9b432423508e0dfe6f8019a45b.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover; 
+  font-family:"Arial Black";
+  
+}
+
+.style1{
+    padding: 50px 24px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 10px 10px 20px #AFAFAF;
+    font-size:28px;
+  
+  }
+
+.style2{
+	position: absolute;
+	bottom: 50;
+	right: 10;
+  font-size:xx-small;
+}
+
+.style3{
+    position: absolute;
+    bottom: 80px;
+    left: 400px;
+    height: 70%;
+    width: 75%;
+    padding: 30px 30px;
+    background-color: rgb(153, 255, 153);
+    border-radius: 8px;
+    overflow: auto;
+    font-family:"Arial";
+    }
+
+.style4{
+    position: absolute;
+    bottom:80px;
+    left:80px;
+    height: 50%;
+    width: 20%;
+    padding: 30px 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 10px 10px 20px #AFAFAF;
+    overflow: auto;
+    font-family:"Arial";
+}
+
+.title{
+    margin-left: 80;
+ }
+
+.button {
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 80px;
+    font-family:"Arial Black";
+}
+
+.button1 {
+    background-color: white;
+    color: black;
+    border: 2px solid #3A8CDA;
+}
+
+.button1:hover {
+    background-color: #3A8CDA;
+    color: white;
+}
+
+.mask {
+    background-color: rgba(236, 236, 217, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.active {
+    background-color: #3A8CDA;
+}

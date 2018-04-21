@@ -1,0 +1,130 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css "href="css/web.css"/>
+</head>
+
+<script>
+$(document).ready(function()
+{   
+	// handle button clicks         
+  $('#buttonID').click(function() 
+	{
+		// make an ajax call
+		alert($('#formID').serialize());
+    $.ajax(
+		{
+            dataType: 'jsonp',
+            jsonpCallback: '_wrapper',
+            data: $('#formID').serialize(),
+            type: 'POST',
+            url: "http://port-9001.db-lokloksky2014350297.codeanyapp.com/Signup",
+            success: handleButtonResponse,
+        });
+    });
+
+    function handleButtonResponse(data)
+    {
+      alert(data);
+      // parse the json string
+      var jsonObject = JSON.parse(data);
+      $('#reponseID').append( jsonObject.message );
+    }
+	
+	$("#btnAddFav").click(function()
+	{
+		//alert("callnow");
+		var pageKeyword = "personal";
+		//tempSearch = document.forms["search"]["searchkey"].value;
+		//alert(tempEmail);
+		//alert(tempName);
+		//alert(tempPassword);
+		$.ajax(
+		{
+			url: "http://db-lokloksky2014350297.codeanyapp.com:9001/addfavourlist", 
+			type: 'POST',
+			data: $('#formID').serialize(),
+			success: function(result)
+			{
+				alert("successfully added");
+				//alert(result);
+			},error: function (xhr, textStatus, errorThrown) 
+			{
+				//alert(textStatus);
+				alert("add failed");
+				console.log(textStatus);
+      	}
+		});
+	});
+	
+  $("#btnRemoveFav").click(function()
+	{
+		//alert("callnow");
+		var pageKeyword = "protect";
+		//tempSearch = document.forms["search"]["searchkey"].value;
+		//alert(tempEmail);
+		//alert(tempName);
+		//alert(tempPassword);
+		$.ajax(
+		{
+			url: "http://db-lokloksky2014350297.codeanyapp.com:9001/removefavourlist", 
+			type: 'POST',
+			data: $('#formID').serialize(),
+			success: function(result)
+			{
+				alert("successfully removed");
+				//alert(result);
+			},error: function (xhr, textStatus, errorThrown) 
+			{
+				//alert(textStatus);
+				alert("remove failed");
+				console.log(textStatus);
+      	}
+		});
+	});
+});
+	
+	
+</script>
+<body>
+  <div class = "mask">
+  <<a href="index"><div class = "style1">Personal Data Privacy</div></a>
+  <h3>How to protect yourself in the social networks</h3>
+  <p>In the network world, users' personal data can easily be known by other people, especially the website like Facebook, Twitter, Weibo, etc. Through the connection between people, users' personal data like birthday and photo can be wide spread even without users' permission.
+
+So this is important for us to learn how to protect our data while using social network. 
+
+The following show how to protect yourself on the social network.
+    
+  <h4>While registering:</h4>
+  <ul>
+    <li>Read the privacy policy, understand how the website will use your data</li>
+    <li>Avoid providing excessive personal data</li>
+    <li>Use different email address to register</li>
+  </ul>
+  <br>
+  
+ <h4>Privacy setting:</h4>
+  <ul>
+    <li>Know how the social network works</li>
+    <li>Understand how your data will be shared</li>
+    <li>Keep checking the privacy setting pages</li>
+    <li>Don't "friend" people you do not know</li>
+    <li>Be cautious about third-party applications</li>
+  </ul>
+
+</p>
+	<br>
+  <form id="formID" name="fav">
+			<input type="hidden" name="keyword" value="protect"/>
+		</form>
+  	<button id="btnAddFav" class="button button1">
+    	Add favourite
+  	</button>
+  <button id="btnRemoveFav" class="button button1">
+    Remove favourite
+  </button>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css "href="css/web.css"/>
+</head>
+
+<script>
+$(document).ready(function()
+{   
+	// handle button clicks         
+  $('#buttonID').click(function() 
+	{
+		// make an ajax call
+		alert($('#formID').serialize());
+    $.ajax(
+		{
+            dataType: 'jsonp',
+            jsonpCallback: '_wrapper',
+            data: $('#formID').serialize(),
+            type: 'POST',
+            url: "http://db-lokloksky2014350297.codeanyapp.com:9001/Signup",
+            success: handleButtonResponse,
+        });
+    });
+
+    function handleButtonResponse(data)
+    {
+      alert(data);
+      // parse the json string
+      var jsonObject = JSON.parse(data);
+      $('#reponseID').append( jsonObject.message );
+    }
+  
+  
+	$("#buttonlogin").click(function()
+	{
+		//alert("callnow");
+		var tempName, tempPassword;
+		tempName = document.forms["login"]["Name"].value;
+		tempPassword = document.forms["login"]["Password"].value;
+		//alert(tempEmail);
+		//alert(tempName);
+		//alert(tempPassword);
+		if(tempName == "" || tempPassword == "")
+			{
+				alert("Please fill all the field.");
+			}
+		else
+			{
+				$.ajax(
+				{
+					url: "http://db-lokloksky2014350297.codeanyapp.com:9001/Login", 
+					type: 'POST',
+					data: $('#formID').serialize(),
+					success: function(result)
+					{
+						alert("Login successful, you will be redirect to the index page.");
+            window.location.href = "http://db-lokloksky2014350297.codeanyapp.com:9001/index";
+					},
+          error: function (xhr, textStatus, errorThrown) 
+					{
+				//alert(textStatus);
+						alert("Login failed, please check you username and password.");
+						console.log(textStatus);
+      		}
+				});
+			}
+	});
+});
+</script>
+
+
+
+
+<body>
+  <div class = "mask">
+  <a href="index"><div class = "style1">Personal Data Privacy</div></a>
+  <div id="signupform">
+<b>log in</b>  <a href="/Signuppage">Sign up</a>
+		<br>
+  	<form id="formID" name="login">
+    	username: <input type="text" name="Name"/>
+			password: <input type="password" name="Password">
+		</form>
+  	<button id="buttonlogin" class="button button1">
+    	Login
+  	</button>
+	</div>	
+  </div>
+</body>
+
+</html>
